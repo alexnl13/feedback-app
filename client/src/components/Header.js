@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
+import CreditCard from './CreditCard';
 
 class Header extends Component {
     renderContent() {
@@ -10,7 +11,12 @@ class Header extends Component {
             case false:
                 return <li><a href='/auth/google'>Log In</a></li>;
             default:
-                return <li><a href='/api/logout'>Log Out</a></li>;
+                return [
+                    <li key="1"><CreditCard/></li>,
+                    <li key="2" style={{margin: '0 10px'}}>Credits: {this.props.auth.credits}</li>,
+                    <li key="3"><a href='/api/logout'>Log Out</a></li>
+                ];
+
         }
     }
 
